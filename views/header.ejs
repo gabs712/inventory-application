@@ -7,8 +7,7 @@
     <li>
       <a href="/<%= type.name %>"><%= type.name %></a>
       <form
-        data-delete
-        action="/<%= type.name %>/delete"
+        action="types/<%= type.name %>/delete"
         method="post"
         onsubmit="return confirm('Delete all pokemons of type <%= type.name %>?')"
       >
