@@ -7,6 +7,48 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <%- include('./header.ejs') %>
+    <div class="root">
+      <%- include('./header.ejs') %>
+      <table border="2">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>type</th>
+            <th>hp</th>
+            <th>attack</th>
+            <th>notes</th>
+            <th>delete</th>
+            <th>edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pokemons.forEach((pokemon) => {%>
+          <tr>
+            <td><%= pokemon.id %></td>
+            <td><%= pokemon.name %></td>
+            <td><%= pokemon.type %></td>
+            <td><%= pokemon.hp %></td>
+            <td><%= pokemon.attack %></td>
+            <td><%= pokemon.notes %></td>
+            <td>
+              <form
+                action="pokemons/<%= pokemon.id %>/delete"
+                method="post"
+                onsubmit="return confirm('Delete <%= pokemon.name %>?')"
+              >
+                <button>delete</button>
+              </form>
+            </td>
+            <td>
+              <a href="pokemons/<%= pokemon.id %>/edit">
+                <button>edit</button>
+              </a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
