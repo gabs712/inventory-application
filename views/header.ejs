@@ -6,7 +6,12 @@
     <% types.forEach((type) => { %>
     <li>
       <a href="/<%= type.name %>"><%= type.name %></a>
-      <form action="/<%= type.name %>/delete" method="post">
+      <form
+        data-delete
+        action="/<%= type.name %>/delete"
+        method="post"
+        onsubmit="return confirm('Delete all pokemons of type <%= type.name %>?')"
+      >
         <button class="delete_button">X</button>
       </form>
     </li>

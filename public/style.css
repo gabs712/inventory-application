@@ -30,20 +30,9 @@
 }
 
 .delete_button {
-  --size: 0.8rem;
-
-  width: var(--size);
-  height: var(--size);
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 0.3rem;
-  font-size: 0.5rem;
-  border-radius: 50%;
-  background-color: rgb(230 113 113);
-  color: rgb(255 255 255);
+  font-size: 0.7rem;
+  background: none;
+  color: rgb(153 27 27);
   border-style: none;
   cursor: pointer;
 }
