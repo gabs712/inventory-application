@@ -1,0 +1,15 @@
+<header class="header">
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <% types.forEach((type) => { %>
+    <li>
+      <a href="/<%= type.name %>"><%= type.name %></a>
+      <form action="/<%= type.name %>/delete" method="post">
+        <button class="delete_button">X</button>
+      </form>
+    </li>
+    <% }) %>
+  </ul>
+</header>

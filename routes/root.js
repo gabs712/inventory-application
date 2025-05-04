@@ -1,8 +1,11 @@
 const { Router } = require('express')
-const root = Router()
+const { getTypes } = require('../db/queries')
 
-root.get('/', (req, res) => {
-  res.render('root')
+const root = Router()
+const types = getTypes()
+
+root.get('/', async (req, res) => {
+  res.render('root', { types: await types })
 })
 
 module.exports = root
