@@ -5,12 +5,14 @@ async function getTypes() {
   return rows
 }
 
-async function getPokemonData(type = '*') {
+async function getPokemon(type = null) {
   const { rows } = await pool.query(
     `SELECT pokemons.id, pokemons.name, types.name AS type, hp, attack, notes FROM pokemons
       JOIN pokemon_types ON pokemons.id = pokemon_types.pokemon
       JOIN types ON types.name = pokemon_types.type
+      WHERE $1::text IS NULL OR types.name = $1
     `,
+    [null],
   )
 
   return rows
@@ -18,5 +20,5 @@ async function getPokemonData(type = '*') {
 
 module.exports = {
   getTypes,
-  getPokemonData,
+  getPokemon,
 }
