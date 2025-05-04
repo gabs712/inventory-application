@@ -5,7 +5,7 @@
     </li>
     <% types.forEach((type) => { %>
     <li>
-      <a href="/<%= type.name %>"><%= type.name %></a>
+      <a href="/types/<%= type.name %>"><%= type.name %></a>
       <form
         action="types/<%= type.name %>/delete"
         method="post"
