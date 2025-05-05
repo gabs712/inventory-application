@@ -3,6 +3,7 @@ require('dotenv').config()
 const path = require('node:path')
 const express = require('express')
 const root = require('./routes/root')
+const types = require('./routes/types')
 
 const app = express()
 
@@ -14,5 +15,6 @@ app.use(express.static(assetsPath))
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/', root)
+app.use('/types', types)
 
 app.listen(process.env.PORT)
