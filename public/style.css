@@ -23,6 +23,9 @@ th {
   padding-bottom: 1rem;
   padding-top: 1.3rem;
   padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1rem;
 }
 
 .header ul > :first-child {
