@@ -2,8 +2,8 @@ require('dotenv').config()
 
 const path = require('node:path')
 const express = require('express')
-const root = require('./routes/root')
-const types = require('./routes/types')
+const rootRouter = require('./routes/root')
+const typesRouter = require('./routes/types')
 
 const app = express()
 
@@ -14,7 +14,7 @@ const assetsPath = path.join(__dirname, 'public')
 app.use(express.static(assetsPath))
 app.use(express.urlencoded({ extended: true }))
 
-app.use('/', root)
-app.use('/types', types)
+app.use('/', rootRouter)
+app.use('/types', typesRouter)
 
 app.listen(process.env.PORT)
