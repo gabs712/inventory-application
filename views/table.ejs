@@ -22,7 +22,7 @@
       <td><%= pokemon.notes %></td>
       <td>
         <form
-          action="pokemons/<%= pokemon.id %>/delete"
+          action="/pokemons/<%= pokemon.id %>/delete"
           method="post"
           onsubmit="return confirm('Delete <%= pokemon.name %>?')"
         >
@@ -30,7 +30,7 @@
         </form>
       </td>
       <td>
-        <a href="pokemons/<%= pokemon.id %>/edit">
+        <a href="/pokemons/<%= pokemon.id %>/edit">
           <button>edit</button>
         </a>
       </td>
