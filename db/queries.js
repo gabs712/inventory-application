@@ -12,7 +12,7 @@ async function getPokemons(type = null) {
       JOIN types ON types.name = pokemon_types.type
       WHERE $1::text IS NULL OR types.name = $1
     `,
-    [null],
+    [type],
   )
 
   return rows
