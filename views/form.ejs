@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= action %> | <%= pokemon.name %></title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="root">
+      <%- include('./header.ejs') %>
+      <form class="edit_form" action="/" method="post">
+        <div>
+          <label> name: </label>
+          <input name="name" type="text" value="<%= pokemon.name %>" />
+        </div>
+        <div>
+          <label for="type">type:</label>
+          <input
+            name="type"
+            id="type"
+            type="text"
+            value="<%= pokemon.type %>"
+          />
+        </div>
+        <div>
+          <label for="hp">hp:</label>
+          <input name="hp" id="hp" type="text" value="<%= pokemon.hp %>" />
+        </div>
+        <div>
+          <label for="attack">attack:</label>
+          <input
+            name="attack"
+            id="attack"
+            type="text"
+            value="<%= pokemon.attack %>"
+          />
+        </div>
+        <div>
+          <label for="notes">notes:</label>
+          <textarea name="notes" id="notes"></textarea>
+        </div>
+        <button><%= action %></button>
+      </form>
+    </div>
+  </body>
+</html>

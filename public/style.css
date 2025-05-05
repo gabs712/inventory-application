@@ -53,3 +53,11 @@ th {
   border-style: none;
   cursor: pointer;
 }
+
+.edit_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.6rem;
+}

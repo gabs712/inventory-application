@@ -10,7 +10,7 @@ route.get('/:types', async (req, res) => {
   res.render('main', {
     types: await types,
     pokemons: await pokemons,
-    title: 'Home | ' + req.params.types,
+    title: 'Types | ' + req.params.types,
   })
 })
 
