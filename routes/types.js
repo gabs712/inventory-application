@@ -1,10 +1,10 @@
 const { Router } = require('express')
 const { getTypes, getPokemons } = require('../db/queries')
 
-const root = Router()
+const route = Router()
 const types = getTypes()
 
-root.get('/:types', async (req, res) => {
+route.get('/:types', async (req, res) => {
   const pokemons = getPokemons(req.params.types)
 
   res.render('main', {
@@ -14,4 +14,4 @@ root.get('/:types', async (req, res) => {
   })
 })
 
-module.exports = root
+module.exports = route
