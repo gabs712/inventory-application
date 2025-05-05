@@ -10,4 +10,8 @@ route.get('/', async (req, res) => {
   })
 })
 
+route.post('/', async (req, res) => {
+  res.redirect('/')
+})
+
 module.exports = route
