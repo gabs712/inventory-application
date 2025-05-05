@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= action %> | <%= pokemon.name %></title>
+    <title>
+      <%= action %><%= locals.pokemon && '|' + locals.pokemon.name %>
+    </title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
@@ -12,14 +14,18 @@
       <form class="edit_form" action="/" method="post">
         <div class="form_grid">
           <label> name: </label>
-          <input name="name" type="text" value="<%= locals.pokemon.name %>" />
+          <input
+            name="name"
+            type="text"
+            value="<%= locals.pokemon && locals.pokemon.name %>"
+          />
 
           <label for="type">type:</label>
           <input
             name="type"
             id="type"
             type="text"
-            value="<%= locals.pokemon.type %>"
+            value="<%= locals.pokemon && locals.pokemon.type %>"
           />
 
           <label for="hp">hp:</label>
@@ -27,7 +33,7 @@
             name="hp"
             id="hp"
             type="text"
-            value="<%= locals.pokemon.hp %>"
+            value="<%= locals.pokemon && locals.pokemon %>"
           />
 
           <label for="attack">attack:</label>
@@ -35,12 +41,12 @@
             name="attack"
             id="attack"
             type="text"
-            value="<%= locals.pokemon.attack %>"
+            value="<%= locals.pokemon && locals.pokemon.attack %>"
           />
 
           <label for="notes">notes:</label>
           <textarea name="notes" id="notes">
-<%= locals.pokemon.notes %>
+<%= locals.pokemon && locals.pokemon.notes %>
           </textarea>
         </div>
         <button><%= action %></button>
