@@ -4,6 +4,7 @@ const path = require('node:path')
 const express = require('express')
 const rootRouter = require('./routes/root')
 const typesRouter = require('./routes/types')
+const pokemonsRouter = require('./routes/pokemons')
 
 const app = express()
 
@@ -16,5 +17,6 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use('/', rootRouter)
 app.use('/types', typesRouter)
+app.use('/pokemons', pokemonsRouter)
 
 app.listen(process.env.PORT)
