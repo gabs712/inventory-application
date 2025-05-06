@@ -1,7 +1,7 @@
 const pool = require('./pool')
 
 async function getTypes() {
-  const { rows } = await pool.query('SELECT * FROM types')
+  const { rows } = await pool.query('SELECT * FROM types ORDER BY name')
   return rows
 }
 
