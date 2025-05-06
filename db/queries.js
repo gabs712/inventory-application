@@ -119,4 +119,5 @@ module.exports = {
   editPokemon,
   deletePokemon,
   deleteType,
+  hasType,
 }
