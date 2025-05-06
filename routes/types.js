@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getTypes, getPokemons } = require('../db/queries')
+const { getTypes, getPokemons, deleteType } = require('../db/queries')
 
 const route = Router()
 
@@ -12,6 +12,14 @@ route.get('/:type', async (req, res) => {
     pokemons: await pokemons,
     title: 'Types | ' + req.params.type,
   })
+})
+
+route.post('/:type/delete', async (req, res) => {
+  const type = req.params.type
+
+  await deleteType(type)
+
+  res.redirect('/')
 })
 
 module.exports = route
