@@ -51,9 +51,49 @@ async function insertPokemon(name, type, hp, attack, notes) {
   )
 }
 
+async function deleteEmptyTypes() {
+  await pool.query(`
+    DELETE FROM types
+    WHERE NOT EXISTS (
+      SELECT type FROM pokemon_types
+      WHERE types.name = pokemon_types.type
+    )
+  `)
+}
+
+async function editPokemon(id, name, type, hp, attack, notes) {
+  if (!(await hasType(type))) {
+    await pool.query(`INSERT INTO types VALUES($1)`, [type])
+  }
+
+  await pool.query(
+    `
+      UPDATE pokemons
+        set name = $1,
+        hp = $2,
+        attack = $3,
+        notes = $4
+      WHERE id = $5
+    `,
+    [name, hp, attack, notes, id],
+  )
+
+  await pool.query(
+    `
+    UPDATE pokemon_types
+      set type = $1
+    WHERE pokemon = $2
+  `,
+    [type, id],
+  )
+
+  await deleteEmptyTypes()
+}
+
 module.exports = {
   getTypes,
   getPokemons,
   insertPokemon,
+  editPokemon,
   hasType,
 }
