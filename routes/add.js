@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { getTypes } = require('../db/queries')
+const { getTypes, insertPokemon } = require('../db/queries')
 
 const route = Router()
 
@@ -11,6 +11,9 @@ route.get('/', async (req, res) => {
 })
 
 route.post('/', async (req, res) => {
+  const { name, type, hp, attack, notes } = req.body
+
+  await insertPokemon(name, type, hp, attack, notes)
   res.redirect('/')
 })
 
