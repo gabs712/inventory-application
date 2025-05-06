@@ -1,5 +1,10 @@
 const { Router } = require('express')
-const { getTypes, getPokemons, editPokemon } = require('../db/queries')
+const {
+  getTypes,
+  getPokemons,
+  editPokemon,
+  deletePokemon,
+} = require('../db/queries')
 
 const route = Router()
 
@@ -21,6 +26,15 @@ route.post('/:id/edit', async (req, res) => {
   await editPokemon(id, name, type, hp, attack, notes)
 
   res.redirect('/')
+})
+
+route.post('/:id/delete', async (req, res) => {
+  const id = req.params.id
+
+  await deletePokemon(id)
+
+  const referer = req.get('Referer') || '/'
+  res.redirect(referer)
 })
 
 module.exports = route

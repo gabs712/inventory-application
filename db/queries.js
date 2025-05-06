@@ -90,10 +90,17 @@ async function editPokemon(id, name, type, hp, attack, notes) {
   await deleteEmptyTypes()
 }
 
+async function deletePokemon(id) {
+  await pool.query('DELETE FROM pokemon_types WHERE pokemon = $1', [id])
+  await pool.query('DELETE FROM pokemons WHERE id = $1', [id])
+
+  await deleteEmptyTypes()
+}
+
 module.exports = {
   getTypes,
   getPokemons,
   insertPokemon,
   editPokemon,
-  hasType,
+  deletePokemon,
 }
