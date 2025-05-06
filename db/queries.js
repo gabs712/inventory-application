@@ -21,6 +21,14 @@ async function getPokemons(type = null, id = null) {
   return rows
 }
 
+async function hasId(id) {
+  const { rows } = await pool.query('SELECT * FROM pokemons WHERE id = $1', [
+    id,
+  ])
+
+  return rows.length >= 1
+}
+
 async function hasType(type) {
   const { rows } = await pool.query('SELECT * FROM types WHERE name = $1', [
     type,
@@ -120,4 +128,5 @@ module.exports = {
   deletePokemon,
   deleteType,
   hasType,
+  hasId,
 }

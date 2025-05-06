@@ -4,13 +4,28 @@ const {
   getPokemons,
   editPokemon,
   deletePokemon,
+  hasId,
 } = require('../db/queries')
-const { validationResult } = require('express-validator')
+const { validationResult, param } = require('express-validator')
 const checkForm = require('../utils/checkForm')
 
 const route = Router()
 
-route.get('/:id/edit', async (req, res) => {
+function checkId() {
+  return [
+    param('id').custom(async (value) => {
+      if (!(await hasId(value))) throw new Error('Id does not exist')
+
+      return true
+    }),
+  ]
+}
+route.get('/:id/edit', checkId(), async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.render('error', { errors: errors.array() })
+    return
+  }
   const pokemonId = req.params.id
   const pokemon = (await getPokemons(null, pokemonId))[0]
 
@@ -21,7 +36,7 @@ route.get('/:id/edit', async (req, res) => {
   })
 })
 
-route.post('/:id/edit', checkForm, async (req, res) => {
+route.post('/:id/edit', checkId(), checkForm, async (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     res.render('error', { errors: errors.array() })
@@ -36,7 +51,13 @@ route.post('/:id/edit', checkForm, async (req, res) => {
   res.redirect('/')
 })
 
-route.post('/:id/delete', async (req, res) => {
+route.post('/:id/delete', checkId(), async (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.render('error', { errors: errors.array() })
+    return
+  }
+
   const id = req.params.id
 
   await deletePokemon(id)
