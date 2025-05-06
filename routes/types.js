@@ -3,14 +3,14 @@ const { getTypes, getPokemons } = require('../db/queries')
 
 const route = Router()
 
-route.get('/:types', async (req, res) => {
+route.get('/:type', async (req, res) => {
   const types = getTypes()
-  const pokemons = getPokemons(req.params.types)
+  const pokemons = getPokemons(req.params.type)
 
   res.render('main', {
     types: await types,
     pokemons: await pokemons,
-    title: 'Types | ' + req.params.types,
+    title: 'Types | ' + req.params.type,
   })
 })
 
