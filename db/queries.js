@@ -13,6 +13,7 @@ async function getPokemons(type = null, id = null) {
       JOIN types ON types.name = pokemon_types.type
       WHERE ($1::text IS NULL OR types.name = $1)
       AND ($2::int IS NULL OR pokemons.id = $2)
+      ORDER by pokemons.id
     `,
     [type, id],
   )
